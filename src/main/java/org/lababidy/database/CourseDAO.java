@@ -96,8 +96,7 @@ public class CourseDAO {
         return course;
     }
 
-    public Course save(Course course) {
-        return course.getcid() > 0 ? update(course) : create(course);
+      public Course save(Course course) {        return course.getcid() > 0 ? update(course) : create(course);
 	}    
     
     public Course create(Course course) {

@@ -40,8 +40,8 @@ public class StaffResource {
 		System.out.println("findById " + id);
 		return dao.findById(Integer.parseInt(id));
 	}
-
-	@POST
+    /*
+    	@POST
 	@Consumes({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
 	@Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
     public Staff create(Staff staff) {
@@ -63,5 +63,5 @@ public class StaffResource {
 	public void remove(@PathParam("id") int id) {
 		dao.remove(id);
 	}
-
+*/
 }

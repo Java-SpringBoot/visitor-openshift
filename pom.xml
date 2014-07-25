@@ -53,5 +53,54 @@
         </plugins>
       </build>
     </profile>
-  </profiles>
+    <profile>
+        <id>wildfly-live</id>
+        <activation>
+            <activeByDefault>true</activeByDefault>
+        </activation>
+        <properties>
+            <!-- JBoss dependency versions -->
+            <maven.compiler.executable></maven.compiler.executable>
+            <maven.compiler.fork>false</maven.compiler.fork>
+
+            <version.wildfly.maven.plugin>1.0.2.Final</version.wildfly.maven.plugin>
+
+            <!-- other plugin versions -->
+            <version.compiler.plugin>3.1</version.compiler.plugin>
+        </properties>
+        <build>
+            <!-- Set the name of the war, used as the context root when the app
+            is deployed -->
+            <finalName>test</finalName>
+            <plugins>
+                <plugin>
+                    <artifactId>maven-war-plugin</artifactId>
+                    <version>2.1.1</version>
+                    <configuration>
+                        <!-- Java EE 7 doesn't require web.xml, Maven needs to catch up! -->
+                        <failOnMissingWebXml>false</failOnMissingWebXml>
+                        <warName>ROOT</warName>
+                    </configuration>
+                </plugin>
+                <!-- WildFly plugin to deploy war -->
+                <plugin>
+                    <groupId>org.wildfly.plugins</groupId>
+                    <artifactId>wildfly-maven-plugin</artifactId>
+                    <version>${version.wildfly.maven.plugin}</version>
+                </plugin>
+                <!-- Compiler plugin enforces Java 1.6 compatibility and activates
+                annotation processors -->
+                <plugin>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <version>${version.compiler.plugin}</version>
+                    <configuration>
+                        <source>${maven.compiler.source}</source>
+                        <target>${maven.compiler.target}</target>
+                    </configuration>
+                </plugin>
+            </plugins>
+        </build>
+    </profile>
+</profiles>
+
 </project>

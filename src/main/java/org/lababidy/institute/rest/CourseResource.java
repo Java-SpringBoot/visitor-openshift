@@ -39,8 +39,8 @@ public class CourseResource {
 		System.out.println("findById " + id);
             return coursedao.findById(Integer.parseInt(id));
 	}
-
-	@POST
+    /*
+    	@POST
 	@Consumes({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
 	@Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
     public Course create(Course course) {
@@ -62,5 +62,5 @@ public class CourseResource {
 	public void remove(@PathParam("id") int id) {
             coursedao.remove(id);
 	}
-
+*/
 }
