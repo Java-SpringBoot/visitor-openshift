@@ -15,23 +15,18 @@ public class ConnectionHelper
 	{
     	String driver = null;
 		try {
-                    //Class.forName("com.mysql.jdbc.Driver");
-                    //url = "jdbc:mysql://localhost/cellar?user=root&password=000000";
-                    //InitialContext ctx = new InitialContext();
-                    //DataSource ds
-                    //       = (DataSource) ctx.lookup("java:jboss/datasources/MySQLD");
-                    /*String host = System.getenv("OPENSHIFT_MYSQL_DB_HOST");
+                   String host = System.getenv("OPENSHIFT_MYSQL_DB_HOST");
                      String port = System.getenv("OPENSHIFT_MYSQL_DB_PORT");
                     String appName = System.getenv("OPENSHIFT_APP_NAME");
-                    String dbName = "cellar";
+                    String dbName = "institute";
                     String dbUser = System.getenv("OPENSHIFT_MYSQL_DB_USERNAME");
                     String dbPassWord = System.getenv("OPENSHIFT_MYSQL_DB_PASSWORD");
                      url = "jdbc:mysql://" + host + ":" + port + "/" + dbName + "?user=" + dbUser + "&password=" + dbPassWord;
-                    */
+                    
                     ResourceBundle bundle = ResourceBundle.getBundle("database");
             driver = bundle.getString("jdbc.driver");
             Class.forName(driver);
-                            url = bundle.getString("jdbc.url");
+                    //url = bundle.getString("jdbc.url");
                     // System.out.println("connection test");
 		} catch (Exception e) {
                     //logger.info("");
