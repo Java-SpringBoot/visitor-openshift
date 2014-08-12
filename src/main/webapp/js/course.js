@@ -1,9 +1,9 @@
 // The root URL for the RESTful services
-var rootURL = "././rest/visitor";
+var rootURL = "././rest/course";
 
-var currentVisitor;
+var currentCourse;
 
-// Retrieve visitor list when application starts
+// Retrieve course list when application starts
 findAll();
 
 // Nothing to delete in initial application state
@@ -25,28 +25,28 @@ $('#searchKey').keypress(function(e){
 });
 
 $('#btnAdd').click(function() {
-    newVisitor();
+    newCourse();
 	return false;
 });
 
 $('#btnSave').click(function() {
-    if ($('#visitorId').val() == '')
-        addVisitor();
+    if ($('#courseId').val() == '')
+        addCourse();
 	else
-        updateVisitor();
+        updateCourse();
 	return false;
 });
 
 $('#btnDelete').click(function() {
-    deleteVisitor();
+    deleteCourse();
 	return false;
 });
 
-$('#visitorList a').live('click', function() {
+$('#courseList a').live('click', function() {
 	findById($(this).data('identity'));
 });
 
-// Replace broken images with generic visitor bottle
+// Replace broken images with generic course bottle
 $("img").error(function(){
   $(this).attr("src", "pics/generic.jpg");
 
@@ -59,10 +59,10 @@ function search(searchKey) {
 		findByName(searchKey);
 }
 
-function newVisitor() {
+function newCourse() {
 	$('#btnDelete').hide();
-    currentVisitor = {};
-    renderDetails(currentVisitor); // Display empty form
+    currentCourse = {};
+    renderDetails(currentCourse); // Display empty form
 }
 
 function findAll() {
@@ -95,14 +95,14 @@ function findById(id) {
 		success: function(data){
 			$('#btnDelete').show();
 			console.log('findById success: ' + data.name);
-            currentVisitor = data;
-            renderDetails(currentVisitor);
+            currentCourse = data;
+            renderDetails(currentCourse);
 		}
 	});
 }
 
-function addVisitor() {
-    console.log('addVisitor');
+function addCourse() {
+    console.log('addCourse');
 	$.ajax({
 		type: 'POST',
 		contentType: 'application/json',
@@ -110,43 +110,43 @@ function addVisitor() {
 		dataType: "json",
 		data: formToJSON(),
 		success: function(data, textStatus, jqXHR){
-            alert('Visitor created successfully');
+            alert('Course created successfully');
 			$('#btnDelete').show();
-            $('#visitorId').val(data.id);
+            $('#courseId').val(data.id);
 		},
 		error: function(jqXHR, textStatus, errorThrown){
-            alert('addVisitor error: ' + textStatus);
+            alert('addCourse error: ' + textStatus);
 		}
 	});
 }
 
-function updateVisitor() {
-    console.log('updateVisitor');
+function updateCourse() {
+    console.log('updateCourse');
 	$.ajax({
 		type: 'PUT',
 		contentType: 'application/json',
-        url: rootURL + '/' + $('#visitorId').val(),
+        url: rootURL + '/' + $('#courseId').val(),
 		dataType: "json",
 		data: formToJSON(),
 		success: function(data, textStatus, jqXHR){
-            alert('Visitor updated successfully');
+            alert('Course updated successfully');
 		},
 		error: function(jqXHR, textStatus, errorThrown){
-            alert('updateVisitor error: ' + textStatus);
+            alert('updateCourse error: ' + textStatus);
 		}
 	});
 }
 
-function deleteVisitor() {
-    console.log('deleteVisitor');
+function deleteCourse() {
+    console.log('deleteCourse');
 	$.ajax({
 		type: 'DELETE',
-        url: rootURL + '/' + $('#visitorId').val(),
+        url: rootURL + '/' + $('#courseId').val(),
 		success: function(data, textStatus, jqXHR){
-            alert('Visitor deleted successfully');
+            alert('Course deleted successfully');
 		},
 		error: function(jqXHR, textStatus, errorThrown){
-            alert('deleteVisitor error');
+            alert('deleteCours error');
 		}
 	});
 }
@@ -154,35 +154,26 @@ function deleteVisitor() {
 function renderList(data) {
 	// JAX-RS serializes an empty list as null, and a 'collection of one' as an object (not an 'array of one')
     var list = data == null ? [] : (data instanceof Array ? data : [data]);
-    $('#visitorList a').remove();
-    $.each(list, function(index, visitor) {
-        $('#visitorList').append('<a href="#" class="list-group-item" data-identity="' + visitor.vid + '">' + visitor.vfname + ' ' + visitor.vlname + '</a>');
+    $('#courseList a').remove();
+    $.each(list, function(index, course) {
+        $('#courseList').append('<a href="#" class="list-group-item" data-identity="' + course.cid + '">' + course.cname + '</a>');
 	});
 }
 
-function renderDetails(visitor) {
-    $('#visitorId').val(visitor.vid);
-    $('#vcid').val(visitor.vcid);
-    $('#vfname').val(visitor.vfname);
-    $('#vlname').val(visitor.vlname);
-    $('#vmobile').val(visitor.vmobile);
-    $('#vtelephone').val(visitor.vtelephone);
-    $('#vemail').val(visitor.vemail);
-    $('#vnotes').val(visitor.vnotes);
+function renderDetails(course) {
+    $('#courseId').val(course.cid);
+    $('#cname').val(course.cname);
+    $('#cnotes').val(course.cnotes);
+    
 }
 
 // Helper function to serialize all the form fields into a JSON string
 function formToJSON() {
-    var visitorId = $('#vid').val();
+    var courseId = $('#cid').val();
 	return JSON.stringify({
-        "id": visitorId == "" ? null : visitorId,
-        "vcid": $('#vcid').val(),
-        "vfname": $('#vfname').val(),
-        "vlname": $('#vlname').val(),
-        "vmobile": $('#vmobile').val(),
-        "vtelephone": $('#vtelephone').val(),
-        //"picture": currentVisitor.picture,
-        "vemail": $('#vemail').val(),
-        "vnotes": $('#vnotes').val()
+        "cid": courseId == "" ? null : courseId,
+        "cname": $('#cname').val(),
+        "cnotes": $('#cnotes').val()
+        
 		});
 }

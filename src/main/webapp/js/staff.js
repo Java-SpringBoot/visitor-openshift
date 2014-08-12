@@ -1,9 +1,9 @@
 // The root URL for the RESTful services
-var rootURL = "././rest/visitor";
+var rootURL = "././rest/staff";
 
-var currentVisitor;
+var currentStaff;
 
-// Retrieve visitor list when application starts
+// Retrieve staff list when application starts
 findAll();
 
 // Nothing to delete in initial application state
@@ -25,28 +25,28 @@ $('#searchKey').keypress(function(e){
 });
 
 $('#btnAdd').click(function() {
-    newVisitor();
+    newStaff();
 	return false;
 });
 
 $('#btnSave').click(function() {
-    if ($('#visitorId').val() == '')
-        addVisitor();
+    if ($('#staffId').val() == '')
+        addStaff();
 	else
-        updateVisitor();
+        updateStaff();
 	return false;
 });
 
 $('#btnDelete').click(function() {
-    deleteVisitor();
+    deleteStaff();
 	return false;
 });
 
-$('#visitorList a').live('click', function() {
+$('#staffList a').live('click', function() {
 	findById($(this).data('identity'));
 });
 
-// Replace broken images with generic visitor bottle
+// Replace broken images with generic staff bottle
 $("img").error(function(){
   $(this).attr("src", "pics/generic.jpg");
 
@@ -59,10 +59,10 @@ function search(searchKey) {
 		findByName(searchKey);
 }
 
-function newVisitor() {
+function newStaff() {
 	$('#btnDelete').hide();
-    currentVisitor = {};
-    renderDetails(currentVisitor); // Display empty form
+    currentStaff = {};
+    renderDetails(currentStaff); // Display empty form
 }
 
 function findAll() {
@@ -94,15 +94,15 @@ function findById(id) {
 		dataType: "json",
 		success: function(data){
 			$('#btnDelete').show();
-			console.log('findById success: ' + data.name);
-            currentVisitor = data;
-            renderDetails(currentVisitor);
+            console.log('findById success: ' + data.sname);
+            currentStaff = data;
+            renderDetails(currentStaff);
 		}
 	});
 }
 
-function addVisitor() {
-    console.log('addVisitor');
+function addStaff() {
+    console.log('addStaff');
 	$.ajax({
 		type: 'POST',
 		contentType: 'application/json',
@@ -110,43 +110,43 @@ function addVisitor() {
 		dataType: "json",
 		data: formToJSON(),
 		success: function(data, textStatus, jqXHR){
-            alert('Visitor created successfully');
+            alert('Staff created successfully');
 			$('#btnDelete').show();
-            $('#visitorId').val(data.id);
+            $('#staffId').val(data.id);
 		},
 		error: function(jqXHR, textStatus, errorThrown){
-            alert('addVisitor error: ' + textStatus);
+            alert('addStaff error: ' + textStatus);
 		}
 	});
 }
 
-function updateVisitor() {
-    console.log('updateVisitor');
+function updateStaff() {
+    console.log('updateStaff');
 	$.ajax({
 		type: 'PUT',
 		contentType: 'application/json',
-        url: rootURL + '/' + $('#visitorId').val(),
+        url: rootURL + '/' + $('#staffId').val(),
 		dataType: "json",
 		data: formToJSON(),
 		success: function(data, textStatus, jqXHR){
-            alert('Visitor updated successfully');
+            alert('Staff updated successfully');
 		},
 		error: function(jqXHR, textStatus, errorThrown){
-            alert('updateVisitor error: ' + textStatus);
+            alert('updateStaff error: ' + textStatus);
 		}
 	});
 }
 
-function deleteVisitor() {
-    console.log('deleteVisitor');
+function deleteStaff() {
+    console.log('deleteStaff');
 	$.ajax({
 		type: 'DELETE',
-        url: rootURL + '/' + $('#visitorId').val(),
+        url: rootURL + '/' + $('#staffId').val(),
 		success: function(data, textStatus, jqXHR){
-            alert('Visitor deleted successfully');
+            alert('Staff deleted successfully');
 		},
 		error: function(jqXHR, textStatus, errorThrown){
-            alert('deleteVisitor error');
+            alert('deleteStaff error');
 		}
 	});
 }
@@ -154,35 +154,24 @@ function deleteVisitor() {
 function renderList(data) {
 	// JAX-RS serializes an empty list as null, and a 'collection of one' as an object (not an 'array of one')
     var list = data == null ? [] : (data instanceof Array ? data : [data]);
-    $('#visitorList a').remove();
-    $.each(list, function(index, visitor) {
-        $('#visitorList').append('<a href="#" class="list-group-item" data-identity="' + visitor.vid + '">' + visitor.vfname + ' ' + visitor.vlname + '</a>');
+    $('#staffList a').remove();
+    $.each(list, function(index, staff) {
+        $('#staffList').append('<a href="#" class="list-group-item" data-identity="' + staff.sid + '">' + staff.sname + '</a>');
 	});
 }
 
-function renderDetails(visitor) {
-    $('#visitorId').val(visitor.vid);
-    $('#vcid').val(visitor.vcid);
-    $('#vfname').val(visitor.vfname);
-    $('#vlname').val(visitor.vlname);
-    $('#vmobile').val(visitor.vmobile);
-    $('#vtelephone').val(visitor.vtelephone);
-    $('#vemail').val(visitor.vemail);
-    $('#vnotes').val(visitor.vnotes);
-}
+function renderDetails(staff) {
+    $('#staffId').val(staff.sid);
+    $('#sname').val(staff.sname);
+    $('#spassword').val(staff.spassword);
+    }
 
 // Helper function to serialize all the form fields into a JSON string
 function formToJSON() {
-    var visitorId = $('#vid').val();
+    var staffId = $('#vid').val();
 	return JSON.stringify({
-        "id": visitorId == "" ? null : visitorId,
-        "vcid": $('#vcid').val(),
-        "vfname": $('#vfname').val(),
-        "vlname": $('#vlname').val(),
-        "vmobile": $('#vmobile').val(),
-        "vtelephone": $('#vtelephone').val(),
-        //"picture": currentVisitor.picture,
-        "vemail": $('#vemail').val(),
-        "vnotes": $('#vnotes').val()
+        "id": staffId == "" ? null : staffId,
+        "sname": $('#sname').val(),
+        "spassword": $('#spassword').val()
 		});
 }

@@ -55,25 +55,19 @@
                 </div><!--/.navbar-collapse -->
             </div>
         </div>
-        <br>
+
         <!-- Main jumbotron for a primary marketing message or call to action -->
-        <!--     <div class="jumbotron">
-                 <div class="container">
-                <h1>Hello, world!</h1>
-                <p>This is a template for a simple marketing or informational website. It includes a large callout called a jumbotron and three supporting pieces of content. Use it as a starting point to create something more unique.</p>
-                <p><a class="btn btn-primary btn-lg" role="button">Learn more &raquo;</a></p>
-            </div>
-        </div>
-   -->
-   <div class="container">
+        <div class="container">
             <!-- Example row of columns -->
+            <br>
             <div class="row">
                 <div class="col-xs-2">
                     <input type="text" id="searchKey" class="form-control" placeholder="ادخل اسم الطالب"/>
                 </div>
                 <div class="col-xs-4">
                     <button class="btn btn-default" id="btnSearch">Search &raquo</button>
-                    <button class="btn btn-default" id="btnAdd">New Visitor</button>
+                    <button class="btn btn-default" id="btnAdd">New Course</button>
+                    <br>
                 </div>
             </div>
             <div class="row">
@@ -81,42 +75,28 @@
                     <!--<h2>Heading1</h2>
                     <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
                     -->
-                    <div id ="visitorList" class="list-group" >
-                        <a href="#" data-identity=""></a>
-                        <a href="#" class="list-group-item">Sent</a>
-                        <a href="#" class="list-group-item">Drafts</a>
-                        <a href="" class="list-group-item">Deleted</a>
-                        <a href="" class="list-group-item" >Spam</a>
+                    
+                    <div id ="courseList" class="list-group" >
 
                     </div>
                 </div>
                 <div class="col-xs-8 form-group ">
                     <form role="form" id="visitorForm" >
 
-                        <label for="id" >Visitor Id</label>
-                        <input class="form-control" id="visitorId"  type="text" disabled />
+                        <label for="id" >Course Id</label>
+                        <input class="form-control" id="courseId"  type="text" disabled />
                         <br>
-                        <label>Visitor Course</label>
-                        <input class="form-control" type="text" id="vcid"  required>
+                        <label>Course Name</label>
+                        <input class="form-control" type="text" id="cname"  required>
                         <br>
-                        <label>First Name</label>
-                        <input class="form-control" type="text" id="vfname" />
-                        <br>
-                        <label>Last Name</label>
-                        <input class="form-control" type="text" id="vlname" />
-                        <br>
-                        <label>Mobile</label>
-                        <input class="form-control" type="text" id="vmobile" />
-                        <br>
-                        <label>Telephone</label>
-                        <input class="form-control has-success has-feedback" type="text" id="vtelephone"/>
-                        <br>
+
                         <label>Notes</label>
-                        <textarea class="form-control" rows="3" id="vnotes" ></textarea>
+                        <textarea class="form-control" rows="3" id="cnotes" ></textarea>
                        
                         <br>
                         <button class="btn btn-default"  id="btnSave">Save</button>
                         <button class="btn btn-default" id="btnDelete">Delete</button>
+
                     </form>
                 </div>
 
@@ -153,9 +133,9 @@
         <script>window.jQuery || document.write('<script src="css/bootstrap-3.2.0.js"><\/script>');</script>
         -->
         <script src="js/vendor/jquery-1.11.0.js"></script>
-        <script src="js/vendor/bootstrap.js"></script>
+        <script src="js/vendor/bootstrap.min.js"></script>
 
-        <script src="js/main.js"></script>
+        <script src="js/course.js"></script>
 
         <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. 
         <script>
