@@ -1,0 +1,43 @@
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<div class="container" id="course">
+    <!-- Example row of columns -->
+    
+    <div class="row">
+        <div class="col-xs-2">
+            <input type="text" id="searchKey" class="form-control" placeholder=""/>
+        </div>
+        <div class="col-xs-4">
+            <button class="btn btn-default" id="btnSearch">Search &raquo</button>
+            <button class="btn btn-default" id="btnAdd">New Course</button>
+            <br>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-4 text-center">
+            <div id ="courseList" class="list-group" >
+
+            </div>
+        </div>
+        <div class="col-xs-8 form-group ">
+            <form role="form" id="courseForm" >
+                <label for="id" >Course Id</label>
+                <input class="form-control" id="courseId"  type="text" disabled />
+                <br>
+                <label>Course Name</label>
+                <input class="form-control" type="text" id="cname"  required>
+                <br>
+
+                <label>Notes</label>
+                <textarea class="form-control" rows="3" id="cnotes" ></textarea>
+
+                <br>
+                <button class="btn btn-default"  id="btnCourseSave">Save</button>
+                <button class="btn btn-default" id="btnCourseDelete">Delete</button>
+
+            </form>
+        </div>
+
+    </div>
+    <script src="js/course.js"></script>
+</div>

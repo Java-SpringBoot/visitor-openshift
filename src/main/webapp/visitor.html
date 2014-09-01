@@ -1,0 +1,56 @@
+<div class="container " id="home">
+    <!-- Example row of columns -->
+    <div class="row">
+        <div class="col-xs-2">
+            <input type="text" id="searchKey" class="form-control" placeholder="Enter Student name"/>
+        </div>
+        <div class="col-xs-4">
+            <button class="btn btn-default" id="btnSearch">Search &raquo</button>
+            <button class="btn btn-default" id="btnAdd">New Visitor</button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-4 text-center">
+            <div id ="visitorList" class="list-group" >
+            </div>
+        </div>
+        <div class="col-xs-8 form-group ">
+            <form role="form" id="visitorForm" >
+
+                <label for="id" >Visitor Id</label>
+                <input class="form-control" id="visitorId"  type="text" disabled />
+                <br>
+                <div class="dropdown"><button class="btn dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown">Visitor Course<span class="caret"></span></button>
+                    <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1" id="visitrCourseDropDown">
+                        <li role="presentation"><a class="active" role="menuitem" tabindex="-1" href="#">Action</a></li>
+                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Another action</a></li>
+                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Something else here</a></li>
+                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Separated link</a></li>
+                    </ul>
+                </div>
+
+                <br>
+                <label>First Name</label>
+                <input class="form-control" type="text" id="vfname" />
+                <br>
+                <label>Last Name</label>
+                <input class="form-control" type="text" id="vlname" />
+                <br>
+                <label>Mobile</label>
+                <input class="form-control" type="text" id="vmobile" />
+                <br>
+                <label>Telephone</label>
+                <input class="form-control has-success has-feedback" type="text" id="vtelephone"/>
+                <br>
+                <label>Notes</label>
+                <textarea class="form-control" rows="3" id="vnotes" ></textarea>
+
+                <br>
+                <button class="btn btn-default"  id="btnSave">Save</button>
+                <button class="btn btn-default" id="btnDelete">Delete</button>
+            </form>
+        </div>
+
+    </div>
+    <script src="js/visitor.js"></script>
+</div>
